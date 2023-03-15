@@ -1,3 +1,4 @@
+#include "stdio.h"
 #include "stdint.h"
 #include "stm32f1xx.h"
 
@@ -48,9 +49,15 @@ void uart1_write(int ch)
     UART1->DR = (ch & 0xFF);
 }
 
+int __io_putchar(int ch)
+{
+    uart1_write(ch);
+    return ch;
+}
+
 int main()
 {
     Uart1Init();
-    uart1_write('X');
+    printf("Hello From Bluepill...............\n\r");
     while (1){}
 }

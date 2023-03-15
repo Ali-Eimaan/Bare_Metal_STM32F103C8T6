@@ -1,18 +1,4 @@
-#include "stdint.h"
-#include "stm32f1xx.h"
-
-#define UART1EN             (1U<<14)
-#define GPIOAEN             (1U<<2)
-#define AFIOEN              (1U<<0)
-
-#define CR1_TE              (1U<<3)
-#define CR1_UE              (1U<<13)
-#define SR_TXE              (1U<<7)
-
-#define SYS_FREQ            16000000
-#define APB2_CLK            SYS_FREQ
-
-#define BAUDRATE            115200
+#include "UART.h"
 
 static uint16_t compute_baud_rate(uint32_t PeriphClk, uint32_t BaudRate)
 {
@@ -34,11 +20,16 @@ void Uart1Init(void)
     GPIOA->CR[1] |= (1U<<7);
     GPIOA->CR[1] &=~ (1U<<6);  
 
+    GPIOA->CRH |= (1U<<8); 
+    GPIOA->CRH |= (1U<<9); 
+    GPIOA->CRH |= (1U<<11);
+    GPIOA->CRH &=~ (1U<<10); 
+
     AFIO->MAPR &=~ (1U<<2);
 
     uart_set_baudrate(USART1, APB2_CLK, BAUDRATE);
 
-    UART1->CR1 = CR1_TE;
+    UART1->CR1 = (CR1_TE | CR1_RE);
     UART1->CR1 |= CR1_UE
 }
 
@@ -48,9 +39,14 @@ void uart1_write(int ch)
     UART1->DR = (ch & 0xFF);
 }
 
-int main()
+int __io_putchar(int ch)
 {
-    Uart1Init();
-    uart1_write('X');
-    while (1){}
+    uart1_write(ch);
+    return ch;
+}
+
+void uart1_read(void)
+{
+    while(!(UART1->SR & SR_RXNE)){};
+    return UART1->DR;
 }
