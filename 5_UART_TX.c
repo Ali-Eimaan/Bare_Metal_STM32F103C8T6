@@ -1,3 +1,5 @@
+#include "stm32f1xx.h"
+
 #define UART1EN             (1U<<14)
 #define GPIOAEN             (1U<<2)
 
