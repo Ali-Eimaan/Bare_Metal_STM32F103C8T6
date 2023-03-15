@@ -30,10 +30,10 @@ void Uart1Init(void)
     RCC->APB2ENR |= GPIOAEN;
     RCC->APB2ENR |= AFIOEN;
 
-    GPIOA->CR[1] |= (1U<<4); 
-    GPIOA->CR[1] |= (1U<<5); 
-    GPIOA->CR[1] |= (1U<<7);
-    GPIOA->CR[1] &=~ (1U<<6);  
+    GPIOA->CRH |= (1U<<4); 
+    GPIOA->CRH |= (1U<<5); 
+    GPIOA->CRH |= (1U<<7);
+    GPIOA->CRH &=~ (1U<<6);  
 
     AFIO->MAPR &=~ (1U<<2);
 
