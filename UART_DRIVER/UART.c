@@ -1,4 +1,4 @@
-#include "UART.h"
+#include "USART.h"
 
 static uint16_t compute_baud_rate(uint32_t PeriphClk, uint32_t BaudRate)
 {
@@ -13,6 +13,7 @@ static void uart_set_baudrate(USART_TypeDef *USARTx, uint32_t PeriphClk, uint32_
 void Uart1Init(void)
 {
     RCC->APB2ENR |= GPIOAEN;
+    RCC->APB2ENR |= USART1EN;
     RCC->APB2ENR |= AFIOEN;
 
     GPIOA->CRH |= (1U<<4); 
@@ -29,14 +30,14 @@ void Uart1Init(void)
 
     uart_set_baudrate(USART1, APB2_CLK, BAUDRATE);
 
-    UART1->CR1 = (CR1_TE | CR1_RE);
-    UART1->CR1 |= CR1_UE
+    USART1->CR1 = (CR1_TE | CR1_RE);
+    USART1->CR1 |= CR1_UE;
 }
 
 void uart1_write(int ch)
 {
-    while(!(UART1->SR & SR_TXE)){};
-    UART1->DR = (ch & 0xFF);
+    while(!(USART1->SR & SR_TXE)){};
+    USART1->DR = (ch & 0xFF);
 }
 
 int __io_putchar(int ch)
@@ -47,6 +48,6 @@ int __io_putchar(int ch)
 
 void uart1_read(void)
 {
-    while(!(UART1->SR & SR_RXNE)){};
-    return UART1->DR;
+    while(!(USART1->SR & SR_RXNE)){};
+    return USART1->DR;
 }

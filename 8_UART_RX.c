@@ -1,7 +1,7 @@
 #include "stdint.h"
 #include "stm32f1xx.h"
 
-#define UART1EN             (1U<<14)
+#define USART1EN             (1U<<14)
 #define GPIOAEN             (1U<<2)
 #define AFIOEN              (1U<<0)
 
@@ -9,7 +9,7 @@
 #define CR1_UE              (1U<<13)
 #define SR_RXNE             (1U<<5)
 
-#define SYS_FREQ            16000000
+#define SYS_FREQ            8000000
 #define APB2_CLK            SYS_FREQ
 
 #define BAUDRATE            115200
@@ -29,6 +29,7 @@ static void uart_set_baudrate(USART_TypeDef *USARTx, uint32_t PeriphClk, uint32_
 void Uart1Init(void)
 {
     RCC->APB2ENR |= GPIOAEN;
+    RCC->APB2ENR |= USART1EN;
     RCC->APB2ENR |= AFIOEN;
 
     GPIOA->CRH &=~ (1U<<8); 
@@ -40,14 +41,14 @@ void Uart1Init(void)
 
     uart_set_baudrate(USART1, APB2_CLK, BAUDRATE);
 
-    UART1->CR1 = CR1_RE;
-    UART1->CR1 |= CR1_UE
+    USART1->CR1 = CR1_RE;
+    USART1->CR1 |= CR1_UE;
 }
 
 void uart1_read(void)
 {
-    while(!(UART1->SR & SR_RXNE)){};
-    return UART1->DR;
+    while(!(USART1->SR & SR_RXNE)){};
+    return USART1->DR;
 }
 
 int main()

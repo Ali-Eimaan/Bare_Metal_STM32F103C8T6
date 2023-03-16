@@ -5,7 +5,7 @@
 #include "stdint.h"
 #include "stm32f1xx.h"
 
-#define UART1EN             (1U<<14)
+#define USART1EN             (1U<<14)
 #define GPIOAEN             (1U<<2)
 #define AFIOEN              (1U<<0)
 
@@ -15,7 +15,7 @@
 #define SR_TXE              (1U<<7)
 #define SR_RXNE             (1U<<5)
 
-#define SYS_FREQ            16000000
+#define SYS_FREQ            8000000
 #define APB2_CLK            SYS_FREQ
 
 #define BAUDRATE            115200
