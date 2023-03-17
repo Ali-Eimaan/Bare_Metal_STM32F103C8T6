@@ -2,7 +2,7 @@
 #include "stdint.h"
 #include "stm32f1xx.h"
 
-#define USART1EN             (1U<<14)
+#define USART1EN            (1U<<14)
 #define GPIOAEN             (1U<<2)
 #define AFIOEN              (1U<<0)
 
