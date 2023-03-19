@@ -45,7 +45,7 @@ void Uart1Init(void)
     USART1->CR1 |= CR1_UE;
 }
 
-void uart1_read(void)
+char uart1_read(void)
 {
     while(!(USART1->SR & SR_RXNE)){};
     return USART1->DR;
