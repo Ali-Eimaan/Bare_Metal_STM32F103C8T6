@@ -1,4 +1,4 @@
-#include "USART.h"
+#include "UART.h"
 
 static uint16_t compute_baud_rate(uint32_t PeriphClk, uint32_t BaudRate)
 {
