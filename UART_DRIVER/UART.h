@@ -22,6 +22,6 @@
 
 void Uart1Init(void);
 void uart1_write(int ch);
-void uart1_read(void);
+char uart1_read(void);
 
 #endif
