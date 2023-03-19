@@ -46,7 +46,7 @@ int __io_putchar(int ch)
     return ch;
 }
 
-void uart1_read(void)
+char uart1_read(void)
 {
     while(!(USART1->SR & SR_RXNE)){};
     return USART1->DR;
