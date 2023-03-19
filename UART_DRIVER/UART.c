@@ -21,10 +21,10 @@ void Uart1Init(void)
     GPIOA->CRH |= (1U<<7);
     GPIOA->CRH &=~ (1U<<6);  
 
-    GPIOA->CRH |= (1U<<8); 
-    GPIOA->CRH |= (1U<<9); 
-    GPIOA->CRH |= (1U<<11);
-    GPIOA->CRH &=~ (1U<<10); 
+    GPIOA->CRH &=~ (1U<<8); 
+    GPIOA->CRH &=~ (1U<<9); 
+    GPIOA->CRH |= (1U<<10);
+    GPIOA->CRH &=~ (1U<<11); 
 
     AFIO->MAPR &=~ (1U<<2);
 
