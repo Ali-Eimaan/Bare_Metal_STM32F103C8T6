@@ -26,7 +26,7 @@ int main(void)
     while(1)
     {
         if(GPIOA->IDR & PIN4)
-            GPIOC->BSRR = (1U<<29)
+            GPIOC->BSRR = (1U<<29);
         else
             GPIOC->BSRR = PIN13;
     }
