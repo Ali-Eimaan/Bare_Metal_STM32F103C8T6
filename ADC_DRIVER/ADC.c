@@ -11,7 +11,7 @@ void PA4_ADC_INIT(void)
     GPIOA->CRL &=~ (1U<<19);  
 
     ADC1->SQR3 = ADC1CH4;
-    ADC1->L = SEQLEN1; 
+    ADC1->SQR1 = SEQLEN1; 
     ADC1->CR2 |= CR2_ADON;
 }
 

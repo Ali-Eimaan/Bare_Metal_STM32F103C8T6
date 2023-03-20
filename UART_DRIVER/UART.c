@@ -1,4 +1,4 @@
-#include "USART.h"
+#include "UART.h"
 
 static uint16_t compute_baud_rate(uint32_t PeriphClk, uint32_t BaudRate)
 {
@@ -21,10 +21,10 @@ void Uart1Init(void)
     GPIOA->CRH |= (1U<<7);
     GPIOA->CRH &=~ (1U<<6);  
 
-    GPIOA->CRH |= (1U<<8); 
-    GPIOA->CRH |= (1U<<9); 
-    GPIOA->CRH |= (1U<<11);
-    GPIOA->CRH &=~ (1U<<10); 
+    GPIOA->CRH &=~ (1U<<8); 
+    GPIOA->CRH &=~ (1U<<9); 
+    GPIOA->CRH |= (1U<<10);
+    GPIOA->CRH &=~ (1U<<11); 
 
     AFIO->MAPR &=~ (1U<<2);
 
@@ -46,7 +46,7 @@ int __io_putchar(int ch)
     return ch;
 }
 
-void uart1_read(void)
+char uart1_read(void)
 {
     while(!(USART1->SR & SR_RXNE)){};
     return USART1->DR;
