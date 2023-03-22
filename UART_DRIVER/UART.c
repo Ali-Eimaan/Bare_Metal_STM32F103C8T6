@@ -34,6 +34,32 @@ void Uart1Init(void)
     USART1->CR1 |= CR1_UE;
 }
 
+void Uart1RxInterruptInit(void)
+{
+    RCC->APB2ENR |= GPIOAEN;
+    RCC->APB2ENR |= USART1EN;
+    RCC->APB2ENR |= AFIOEN;
+
+    GPIOA->CRH |= (1U<<4); 
+    GPIOA->CRH |= (1U<<5); 
+    GPIOA->CRH |= (1U<<7);
+    GPIOA->CRH &=~ (1U<<6);  
+
+    GPIOA->CRH &=~ (1U<<8); 
+    GPIOA->CRH &=~ (1U<<9); 
+    GPIOA->CRH |= (1U<<10);
+    GPIOA->CRH &=~ (1U<<11); 
+
+    AFIO->MAPR &=~ (1U<<2);
+
+    uart_set_baudrate(USART1, APB2_CLK, BAUDRATE);
+
+    USART1->CR1 = (CR1_TE | CR1_RE);
+    USART1->CR1 |= CR1_RXNEIE;
+    NVIC_EnableIRQ(USART1_IRQn);
+    USART1->CR1 |= CR1_UE;
+}
+
 void uart1_write(int ch)
 {
     while(!(USART1->SR & SR_TXE)){};

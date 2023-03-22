@@ -15,9 +15,11 @@
 #define GPIOBEN             (1U<<3)
 #define GPIOAEN             (1U<<2)
 #define SR_CCI1F            (1U<<1)
+#define DIER_UIE            (1U<<0)
 
 void tim4_1hz_init(void);
 void tim4_PB8_output_compare(void);
 void tim1_PA8_input_capture(void);
+void tim4_1hz_interrupt(void);
 
 #endif

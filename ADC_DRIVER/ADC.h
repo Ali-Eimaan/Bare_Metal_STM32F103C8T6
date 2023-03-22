@@ -12,10 +12,12 @@
 #define CR2_SWSTART         (1U<<30)
 #define SR_EOC              (1U<<1)
 #define CR2_CONT            (1U<<1)
+#define CR1_EOCIE           (1U<<5)
 
 void PA4_ADC_INIT(void);
 void Start_Conversion(void);
 uint32_t ADC_Read(void);
 void Start_Conversion_Continous(void);
+void PA4_ADC_INTERRUPT_INIT(void);
 
 #endif
