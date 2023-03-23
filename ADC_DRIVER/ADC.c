@@ -30,7 +30,7 @@ void PA4_ADC_INTERRUPT_INIT(void)
     ADC1->CR2 |= CR2_ADON;
     ADC1->CR1 |= CR1_EOCIE;
 
-    NVIC_EnableIRQ(ADC_IRQn);
+    NVIC_EnableIRQ(ADC1_IRQn);
 }
 
 void Start_Conversion(void)
