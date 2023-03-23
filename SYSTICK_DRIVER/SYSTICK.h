@@ -12,6 +12,6 @@
 #define CSR_TICKINT                 (1U<<1)
 
 void SYSTICK_DelayMS(int delay);
-void SYSTICK_1Hz_Interrupt(void)
+void SYSTICK_1Hz_Interrupt(void);
 
 #endif
