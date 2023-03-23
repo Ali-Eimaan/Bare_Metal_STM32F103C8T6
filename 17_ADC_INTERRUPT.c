@@ -9,7 +9,7 @@ int main(void)
     while (1){}
 }
 
-void ADC_IRQHandler(void);
+void ADC_IRQHandler(void)
 {
     if(ADC1->SR & SR_EOC)
     {
