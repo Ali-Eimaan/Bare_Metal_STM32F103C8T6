@@ -23,9 +23,10 @@ void USART1_IRQHandler(void)
 {
     if(USART1->SR & SR_RXNE)
         count = USART1->DR;
-    for (int i = 0; i <= count; i++)
+    for (int i = 0; i < count; i++)
     {
         GPIOC->ODR ^= PIN13;
         SYSTICK_DelayMS(100);
     }
+    count = 0;
 }
