@@ -77,3 +77,21 @@ char uart1_read(void)
     while(!(USART1->SR & SR_RXNE)){};
     return USART1->DR;
 }
+
+void DMA1_Channel4_INIT(uint32_t src, uint32_t des, uint32_t len)
+{
+    RCC->AHBENR |= DMA1ENR;
+    DMA1_Channel4->CR &=~ DMA1CREN;
+    DMA1->IFCR |= DMA1IFCR;
+
+    DMA1_Channel4->CPAR = des;
+    DMA1_Channel4->CMAR = src;
+    DMA1_Channel4->CNDTR = len;
+
+    DMA1_Channel4->CR |= DMA1MINC;
+    DMA1_Channel4->CR |= DMA1TCIE;
+    DMA1_Channel4->CR |= DMA1CREN;
+
+    USART1->CR3 |= CR3_DMAT;
+    NVIC_EnableIRQ(DMA1_Channel4_IRQn);
+}
