@@ -65,5 +65,5 @@ void CS_Enable(CS_State state)
     if (state == Low)
         GPIOA->ODR &= ~CSPIN;
     if (state == High)
-        GPIOA->ODR &= ~CSPIN;
+        GPIOA->ODR |= CSPIN;
 }
