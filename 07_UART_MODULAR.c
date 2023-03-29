@@ -1,8 +1,8 @@
 #include "UART.h"
 
-int main()
+int main (void)
 {
     Uart1Init();
     printf("Hello From Bluepill...............\n\r");
-    while (1){}
+    while (1);
 }

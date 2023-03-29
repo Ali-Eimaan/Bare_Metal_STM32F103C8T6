@@ -6,17 +6,17 @@
 
 uint8_t count = 0;
 
-int main()
+int main(void)
 {
     RCC->APB2ENR |= GPIOCEN;
 
     GPIOC->CRH |= (1U<<20);
     GPIOC->CRH |= (1U<<21);
-    GPIOC->CRH &=~ (1U<<22);
-    GPIOC->CRH &=~ (1U<<23);
+    GPIOC->CRH &= ~(1U<<22);
+    GPIOC->CRH &= ~(1U<<23);
 
     Uart1RxInterruptInit();
-    while (1){}
+    while (1);
 }
 
 void USART1_IRQHandler(void)

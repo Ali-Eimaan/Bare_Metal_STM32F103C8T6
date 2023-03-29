@@ -8,5 +8,5 @@ int main(void)
 
     I2C1_burstWrite(0xE8, 0x88, sizeof(BUFF), (char*) BUFF);
 
-    while (1){}
+    while (1);
 }

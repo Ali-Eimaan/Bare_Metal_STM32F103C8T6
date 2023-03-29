@@ -9,12 +9,12 @@ int main(void)
 
     GPIOC->CRH |= (1U<<20);
     GPIOC->CRH |= (1U<<21);
-    GPIOC->CRH &=~ (1U<<22);
-    GPIOC->CRH &=~ (1U<<23);
+    GPIOC->CRH &= ~(1U<<22);
+    GPIOC->CRH &= ~(1U<<23);
 
     SYSTICK_1Hz_Interrupt();
     
-    while (1){}
+    while (1);
 }
 
 void SysTick_Handler(void)

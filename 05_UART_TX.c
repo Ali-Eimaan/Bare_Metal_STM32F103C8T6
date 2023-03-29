@@ -33,9 +33,9 @@ void Uart1Init(void)
     GPIOA->CRH |= (1U<<4); 
     GPIOA->CRH |= (1U<<5); 
     GPIOA->CRH |= (1U<<7);
-    GPIOA->CRH &=~ (1U<<6);  
+    GPIOA->CRH &= ~(1U<<6);  
 
-    AFIO->MAPR &=~ (1U<<2);
+    AFIO->MAPR &= ~(1U<<2);
 
     uart_set_baudrate(USART1, APB2_CLK, BAUDRATE);
 
@@ -45,13 +45,13 @@ void Uart1Init(void)
 
 void uart1_write(int ch)
 {
-    while(!(USART1->SR & SR_TXE)){};
+    while(!(USART1->SR & SR_TXE));
     USART1->DR = (ch & 0xFF);
 }
 
-int main()
+int main (void)
 {
     Uart1Init();
     uart1_write('X');
-    while (1){}
+    while (1);
 }

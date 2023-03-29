@@ -19,14 +19,14 @@ void Uart1Init(void)
     GPIOA->CRH |= (1U<<4); 
     GPIOA->CRH |= (1U<<5); 
     GPIOA->CRH |= (1U<<7);
-    GPIOA->CRH &=~ (1U<<6);  
+    GPIOA->CRH &= ~(1U<<6);  
 
-    GPIOA->CRH &=~ (1U<<8); 
-    GPIOA->CRH &=~ (1U<<9); 
+    GPIOA->CRH &= ~(1U<<8); 
+    GPIOA->CRH &= ~(1U<<9); 
     GPIOA->CRH |= (1U<<10);
-    GPIOA->CRH &=~ (1U<<11); 
+    GPIOA->CRH &= ~(1U<<11); 
 
-    AFIO->MAPR &=~ (1U<<2);
+    AFIO->MAPR &= ~(1U<<2);
 
     uart_set_baudrate(USART1, APB2_CLK, BAUDRATE);
 
@@ -43,14 +43,14 @@ void Uart1RxInterruptInit(void)
     GPIOA->CRH |= (1U<<4); 
     GPIOA->CRH |= (1U<<5); 
     GPIOA->CRH |= (1U<<7);
-    GPIOA->CRH &=~ (1U<<6);  
+    GPIOA->CRH &= ~(1U<<6);  
 
-    GPIOA->CRH &=~ (1U<<8); 
-    GPIOA->CRH &=~ (1U<<9); 
+    GPIOA->CRH &= ~(1U<<8); 
+    GPIOA->CRH &= ~(1U<<9); 
     GPIOA->CRH |= (1U<<10);
-    GPIOA->CRH &=~ (1U<<11); 
+    GPIOA->CRH &= ~(1U<<11); 
 
-    AFIO->MAPR &=~ (1U<<2);
+    AFIO->MAPR &= ~(1U<<2);
 
     uart_set_baudrate(USART1, APB2_CLK, BAUDRATE);
 
@@ -62,7 +62,7 @@ void Uart1RxInterruptInit(void)
 
 void uart1_write(int ch)
 {
-    while(!(USART1->SR & SR_TXE)){};
+    while(!(USART1->SR & SR_TXE));
     USART1->DR = (ch & 0xFF);
 }
 
@@ -74,14 +74,14 @@ int __io_putchar(int ch)
 
 char uart1_read(void)
 {
-    while(!(USART1->SR & SR_RXNE)){};
+    while(!(USART1->SR & SR_RXNE));
     return USART1->DR;
 }
 
 void DMA1_Channel4_INIT(uint32_t src, uint32_t des, uint32_t len)
 {
     RCC->AHBENR |= DMA1ENR;
-    DMA1_Channel4->CR &=~ DMA1CREN;
+    DMA1_Channel4->CR &= ~DMA1CREN;
     DMA1->IFCR |= DMA1IFCR;
 
     DMA1_Channel4->CPAR = des;

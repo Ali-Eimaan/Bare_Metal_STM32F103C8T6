@@ -7,10 +7,10 @@ void PA8_EXTI_INIT(void)
     RCC->APB2ENR |= GPIOAEN;
     RCC->APB2ENR |= AFIOEN;
 
-    GPIOA->CRH &=~ (1U<<0);
-    GPIOA->CRH &=~ (1U<<1);
-    GPIOA->CRH &=~ (1U<<2);
-    GPIOA->CRH |~ (1U<<3);
+    GPIOA->CRH &= ~(1U<<0);
+    GPIOA->CRH &= ~(1U<<1);
+    GPIOA->CRH &= ~(1U<<2);
+    GPIOA->CRH |= (1U<<3);
 
     AFIO->EXTICR3 = 0;
 

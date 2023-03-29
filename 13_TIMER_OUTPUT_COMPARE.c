@@ -13,12 +13,12 @@ int main(void)
 
     GPIOC->CRH |= (1U<<20);
     GPIOC->CRH |= (1U<<21);
-    GPIOC->CRH &=~ (1U<<22);
-    GPIOC->CRH &=~ (1U<<23);
+    GPIOC->CRH &= ~(1U<<22);
+    GPIOC->CRH &= ~(1U<<23);
 
-    GPIOA->CRL &=~ (1U<<16);
-    GPIOA->CRL &=~ (1U<<17);
-    GPIOA->CRL &=~ (1U<<18);
+    GPIOA->CRL &= ~(1U<<16);
+    GPIOA->CRL &= ~(1U<<17);
+    GPIOA->CRL &= ~(1U<<18);
     GPIOA->CRL |= (1U<<19);
 
     tim4_PB8_output_compare();

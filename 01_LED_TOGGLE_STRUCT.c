@@ -54,12 +54,12 @@ int main(void)
 
     GPIOC->MODER[1] |= (1U<<20);
     GPIOC->MODER[1] |= (1U<<21);
-    GPIOC->MODER[1] &=~ (1U<<22);
-    GPIOC->MODER[1] &=~ (1U<<23);
+    GPIOC->MODER[1] &= ~(1U<<22);
+    GPIOC->MODER[1] &= ~(1U<<23);
 
     while(1)
     {
         GPIOC->ODR ^= PIN13;
-        for (int i = 0; i < 1000000; i++){}
+        for (int i = 0; i < 1000000; i++);
     }
 }

@@ -26,9 +26,9 @@ void SPI_Config(void)
 
     SPI1->CR1 |= CPHA;
     SPI1->CR1 |= CPOL;
-    SPI1->CR1 |= SPI1EN
     SPI1->CR1 |= NSSCONF;
     SPI1->CR1 |= MASTEREN;
+    SPI1->CR1 |= SPIEN;
 }
 
 void SPI1_Transmit(uint8_t *data, uint32_t size)
@@ -60,7 +60,7 @@ void SPI1_Receive(uint8_t *data, uint32_t size)
     }
 }
 
-void CS_Enable(CS_State state)
+void CS_Enable(uint8_t state)
 {
     if (state == Low)
         GPIOA->ODR &= ~CSPIN;

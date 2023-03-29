@@ -1,7 +1,7 @@
 #include "stdint.h"
 #include "stm32f1xx.h"
 
-#define USART1EN             (1U<<14)
+#define USART1EN            (1U<<14)
 #define GPIOAEN             (1U<<2)
 #define AFIOEN              (1U<<0)
 
@@ -32,12 +32,12 @@ void Uart1Init(void)
     RCC->APB2ENR |= USART1EN;
     RCC->APB2ENR |= AFIOEN;
 
-    GPIOA->CRH &=~ (1U<<8); 
-    GPIOA->CRH &=~ (1U<<9); 
+    GPIOA->CRH &= ~(1U<<8); 
+    GPIOA->CRH &= ~(1U<<9); 
     GPIOA->CRH |= (1U<<10);
-    GPIOA->CRH &=~ (1U<<11);  
+    GPIOA->CRH &= ~(1U<<11);  
 
-    AFIO->MAPR &=~ (1U<<2);
+    AFIO->MAPR &= ~(1U<<2);
 
     uart_set_baudrate(USART1, APB2_CLK, BAUDRATE);
 
@@ -47,11 +47,11 @@ void Uart1Init(void)
 
 char uart1_read(void)
 {
-    while(!(USART1->SR & SR_RXNE)){};
+    while(!(USART1->SR & SR_RXNE));
     return USART1->DR;
 }
 
-int main()
+int main (void)
 {
     Uart1Init();
     while (1)

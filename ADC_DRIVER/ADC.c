@@ -5,10 +5,10 @@ void PA4_ADC_INIT(void)
     RCC->APB2ENR |= GPIOAEN;
     RCC->APB2ENR |= ADC1EN;
 
-    GPIOA->CRL &=~ (1U<<16); 
-    GPIOA->CRL &=~ (1U<<17); 
-    GPIOA->CRL &=~ (1U<<18);
-    GPIOA->CRL &=~ (1U<<19);  
+    GPIOA->CRL &= ~(1U<<16); 
+    GPIOA->CRL &= ~(1U<<17); 
+    GPIOA->CRL &= ~(1U<<18);
+    GPIOA->CRL &= ~(1U<<19);  
 
     ADC1->SQR3 = ADC1CH4;
     ADC1->SQR1 = SEQLEN1; 
@@ -20,10 +20,10 @@ void PA4_ADC_INTERRUPT_INIT(void)
     RCC->APB2ENR |= GPIOAEN;
     RCC->APB2ENR |= ADC1EN;
 
-    GPIOA->CRL &=~ (1U<<16); 
-    GPIOA->CRL &=~ (1U<<17); 
-    GPIOA->CRL &=~ (1U<<18);
-    GPIOA->CRL &=~ (1U<<19);  
+    GPIOA->CRL &= ~(1U<<16); 
+    GPIOA->CRL &= ~(1U<<17); 
+    GPIOA->CRL &= ~(1U<<18);
+    GPIOA->CRL &= ~(1U<<19);  
 
     ADC1->SQR3 = ADC1CH4;
     ADC1->SQR1 = SEQLEN1; 

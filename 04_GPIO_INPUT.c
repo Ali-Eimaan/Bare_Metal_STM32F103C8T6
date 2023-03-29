@@ -13,13 +13,13 @@ int main(void)
 
     GPIOC->CRH |= (1U<<20);
     GPIOC->CRH |= (1U<<21);
-    GPIOC->CRH &=~ (1U<<22);
-    GPIOC->CRH &=~ (1U<<23);
+    GPIOC->CRH &= ~(1U<<22);
+    GPIOC->CRH &= ~(1U<<23);
 
-    GPIOA->CRH &=~ (1U<<0);
-    GPIOA->CRH &=~ (1U<<1);
-    GPIOA->CRH &=~ (1U<<2);
-    GPIOA->CRH |~ (1U<<3);
+    GPIOA->CRH &= ~(1U<<0);
+    GPIOA->CRH &= ~(1U<<1);
+    GPIOA->CRH &= ~(1U<<2);
+    GPIOA->CRH |= (1U<<3);
 
     while(1)
     {

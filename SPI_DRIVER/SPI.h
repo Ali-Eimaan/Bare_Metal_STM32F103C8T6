@@ -40,6 +40,6 @@ void SPI_GPIO_init(void);
 void SPI_Config(void);
 void SPI1_Transmit(uint8_t *data, uint32_t size);
 void SPI1_Receive(uint8_t *data, uint32_t size);
-void CS_Enable(CS_State state);
+void CS_Enable(uint8_t state);
 
 #endif

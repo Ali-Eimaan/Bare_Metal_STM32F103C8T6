@@ -9,12 +9,12 @@ int main(void)
 
     GPIOC->CRH |= (1U<<20);
     GPIOC->CRH |= (1U<<21);
-    GPIOC->CRH &=~ (1U<<22);
-    GPIOC->CRH &=~ (1U<<23);
+    GPIOC->CRH &= ~(1U<<22);
+    GPIOC->CRH &= ~(1U<<23);
 
     while(1)
     {
         GPIOC->ODR ^= PIN13;
-        for (int i = 0; i < 1000000; i++){}
+        for (int i = 0; i < 1000000; i++);
     }
 }

@@ -11,14 +11,14 @@ int main(void)
 
     GPIOC->CRH |= (1U<<20);
     GPIOC->CRH |= (1U<<21);
-    GPIOC->CRH &=~ (1U<<22);
-    GPIOC->CRH &=~ (1U<<23);
+    GPIOC->CRH &= ~(1U<<22);
+    GPIOC->CRH &= ~(1U<<23);
 
     Uart1Init();
 
     DMA1_Channel4_INIT((uint32_t) BUFF, (uint32_t) USART1->DR, sizeof(BUFF));
 
-    while (1){}
+    while (1);
 }
 
 void DMA1_Channel4_IRQHandler(void)
