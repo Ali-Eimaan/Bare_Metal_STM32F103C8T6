@@ -6,7 +6,7 @@ int main(void)
 {
     I2C1_init();
 
-    I2C1_burstWrite(0xE8, 0x88, sizeof(BUFF), (char*) BUFF);
+    I2C1_burstWrite(0x4E, sizeof(BUFF), (char*) BUFF);
 
     while (1);
 }

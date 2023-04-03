@@ -24,9 +24,20 @@
 #define I2CSTOP                 (1U<<9)
 #define I2CBTF                  (1U<<2)
 
+#define I2CITEVTEN              (1U<<9)
+#define I2CSLAVEADDR            (78<<1)
+#define I2CENGC                 (1U<<6)
+
+void I2C1_Read(char saddr, int n, char* data);
+void I2C1_Write(char saddr, int n, char* data);
+
 void I2C1_init(void);
-void I2C_byteread(char saddr, char maddr, char* data);
+void I2C_addrbyteread(char saddr, char maddr, char* data);
 void I2C1_burstRead(char saddr, char maddr, int n, char* data);
 void I2C1_burstWrite(char saddr, char maddr, int n, char* data);
+
+void I2C1_Slave_init_Interrupt(void);
+void I2C1_SLave_Write(int n, char* data);
+void I2C1_Slave_Read(int n, char* data);
 
 #endif
