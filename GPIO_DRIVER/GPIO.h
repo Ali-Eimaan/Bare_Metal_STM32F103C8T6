@@ -3,7 +3,7 @@
 
 #include "stm32f1xx.h"
 
-typedef enum PORTS_Type
+typedef enum 
 {
     PORTA,
     PORTB,
@@ -12,38 +12,38 @@ typedef enum PORTS_Type
     PORTE,
     PORTF,
     PORTG
-}
+}PORTS_Type;
 
-typedef enum PERIPHERERALS_Type
+typedef enum 
 {
-    SPI1,
-    I2C1,
-    USART1,
-    USART2,
-    USART3,
-    TIM1 = 6,
-    TIM2 = 8,
-    TIM3 = 10,
-    TIM4 = 12,
-    CAN,
-    PD01 = 15,
-    TIM5CH4,
-    ADC1ETRGINJ,
-    ADC1ETRGREG,
-    ADC2ETRGINJ,
-    ADC2ETRGREG,
-    SWJCFG = 24
-}
+    pSPI1,
+    pI2C1,
+    pUSART1,
+    pUSART2,
+    pUSART3,
+    pTIM1 = 6,
+    pTIM2 = 8,
+    pTIM3 = 10,
+    pTIM4 = 12,
+    pCAN,
+    pPD01 = 15,
+    pTIM5CH4,
+    pADC1ETRGINJ,
+    pADC1ETRGREG,
+    pADC2ETRGINJ,
+    pADC2ETRGREG,
+    pSWJCFG = 24
+}PERIPHERERALS_Type;
 
-typedef enum REMAP_Type
+typedef enum
 {
     NoRemap,
     PartialRemap,
     PartialRemap1,
     FullRemap
-}
+}REMAP_Type;
 
-typedef enum PINS_Type
+typedef enum
 {
     PIN0,
     PIN1,
@@ -61,13 +61,13 @@ typedef enum PINS_Type
     PIN13,
     PIN14,
     PIN15
-}
+}PINS_Type;
 
-typedef enum PinState_Type
+typedef enum 
 {
     LOW,
     HIGH
-}
+}PinState_Type;
 
 typedef enum CNF_Type
 {
@@ -79,7 +79,7 @@ typedef enum CNF_Type
     GeneralPurposeOpenDrain,
     AlternateFunctionPushPull,
     AlternateFunctionOpenDrain
-}
+}CNF_Type;
 
 typedef enum Modes_Type
 {
@@ -87,15 +87,15 @@ typedef enum Modes_Type
     OutputMode10MHz,
     OutputMode2MHz,
     OutputMode50MHz
-}
+}Modes_Type;
 
-PinState ReadPin(GPIO_TypeDef *GPIOx, PINS Pin);
-void ResetPin(GPIO_TypeDef *GPIOx, PINS Pin)
-void TogglePin(GPIO_TypeDef *GPIOx, PINS Pin);
-void SetPinMode(GPIO_TypeDef *GPIOx, PINS Pin, CNF Cnf, Modes Mode);
-void WritePin(GPIO_TypeDef *GPIOx, PINS Pin, PinState State);
-void LockPin(GPIO_TypeDef *GPIOx, PINS Pin, uint8_t LockState);
-void GPIO_Remap(PERIPHERERALS Periphererals, REMAP_Type Remap);
+PinState_Type ReadPin(GPIO_TypeDef *GPIOx, PINS_Type Pin);
+void ResetPin(GPIO_TypeDef *GPIOx, PINS_Type Pin);
+void TogglePin(GPIO_TypeDef *GPIOx, PINS_Type Pin);
+void SetPinMode(GPIO_TypeDef *GPIOx, PINS_Type Pin, CNF_Type Cnf, Modes_Type Mode);
+void WritePin(GPIO_TypeDef *GPIOx, PINS_Type Pin, PinState_Type State);
+void LockPin(GPIO_TypeDef *GPIOx, PINS_Type Pin, uint32_t LockState);
+void GPIO_Remap(PERIPHERERALS_Type Periphererals, REMAP_Type Remap);
 void EXTI_Init(PINS_Type Pin, PORTS_Type Port);
 
 #endif
