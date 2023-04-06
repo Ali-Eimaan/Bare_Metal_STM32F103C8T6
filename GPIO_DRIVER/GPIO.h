@@ -186,7 +186,81 @@
 #define PIN15LCK                            (1U<<15)
 #define PINSLCKK                            (1U<<16)
 
-typedef enum PINS
+#define AFIOPIN0                            (1U<<0)
+#define AFIOPIN1                            (1U<<1)
+#define AFIOPIN2                            (1U<<2)
+#define AFIOPIN3                            (1U<<3)
+#define AFIOPORT0                           (1U<<4)
+#define AFIOPORT1                           (1U<<5)
+#define AFIOPORT2                           (1U<<6)
+#define AFIOEVOE                            (1U<<7)
+
+#define SPI1REMAP                           (1U<<0)
+#define I2C1REMAP                           (1U<<1)
+#define USART1REMAP                         (1U<<2)
+#define USART2REMAP                         (1U<<3)
+#define USART3REMAP0                        (1U<<4)
+#define USART3REMAP1                        (1U<<5)
+#define TIM1REMAP0                          (1U<<6)
+#define TIM1REMAP1                          (1U<<7)
+#define TIM2REMAP0                          (1U<<8)
+#define TIM2REMAP1                          (1U<<9)
+#define TIM3REMAP0                          (1U<<10)
+#define TIM3REMAP1                          (1U<<11)
+#define TIM4REMAP                           (1U<<12)
+#define CANREMAP0                           (1U<<13)
+#define CANREMAP1                           (1U<<14)
+#define PDO1REMAP                           (1U<<15)
+#define TIM5CH4REMAP                        (1U<<16)
+#define ADC1ETRGINJREMAP                    (1U<<17)
+#define ADC1ETRGREGREMAP                    (1U<<18)
+#define ADC2ETRGINJREMAP                    (1U<<19)
+#define ADC2ETRGREGREMAP                    (1U<<20)
+#define SWJCFG0                             (1U<<24)
+#define SWJCFG1                             (1U<<25)
+#define SWJCFG2                             (1U<<26)
+
+typedef enum PORTS_Type
+{
+    PORTA,
+    PORTB,
+    PORTC,
+    PORTD,
+    PORTE,
+    PORTF,
+    PORTG
+}
+
+typedef enum PERIPHERERALS_Type
+{
+    SPI1,
+    I2C1,
+    USART1,
+    USART2,
+    USART3,
+    TIM1 = 6,
+    TIM2 = 8,
+    TIM3 = 10,
+    TIM4 = 12,
+    CAN,
+    PD01 = 15,
+    TIM5CH4,
+    ADC1ETRGINJ,
+    ADC1ETRGREG,
+    ADC2ETRGINJ,
+    ADC2ETRGREG,
+    SWJCFG = 24
+}
+
+typedef enum REMAP_Type
+{
+    NoRemap,
+    PartialRemap,
+    PartialRemap1,
+    FullRemap
+}
+
+typedef enum PINS_Type
 {
     PIN0,
     PIN1,
@@ -206,13 +280,13 @@ typedef enum PINS
     PIN15
 }
 
-typedef enum PinState
+typedef enum PinState_Type
 {
     LOW,
     HIGH
 }
 
-typedef enum CNF
+typedef enum CNF_Type
 {
     AnalogInput,
     FloatingInput,
@@ -224,7 +298,7 @@ typedef enum CNF
     AlternateFunctionOpenDrain
 }
 
-typedef enum Modes
+typedef enum Modes_Type
 {
     InputMode,
     OutputMode10MHz,
@@ -238,5 +312,7 @@ void TogglePin(GPIO_TypeDef *GPIOx, PINS Pin);
 void SetPinMode(GPIO_TypeDef *GPIOx, PINS Pin, CNF Cnf, Modes Mode);
 void WritePin(GPIO_TypeDef *GPIOx, PINS Pin, PinState State);
 void LockPin(GPIO_TypeDef *GPIOx, PINS Pin, uint8_t LockState);
+void GPIO_Remap(PERIPHERERALS Periphererals, REMAP_Type Remap);
+void EXTI_Init(PINS_Type Pin, PORTS_Type Port);
 
 #endif
