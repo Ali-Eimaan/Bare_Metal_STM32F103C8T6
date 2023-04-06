@@ -17,11 +17,11 @@ void SetPinMode(GPIO_TypeDef *GPIOx, PINS_Type Pin, CNF_Type Cnf, Modes_Type Mod
 void LockPin(GPIO_TypeDef *GPIOx, PINS_Type Pin, uint32_t LockState)
 {
     GPIOx->LCKR |= Pin;
-    GPIOx->LCKR = PINSLCKK;
+    GPIOx->LCKR = GPIO_LCKR_LCKK;
     GPIOx->LCKR = (1U<<Pin);
-    GPIOx->LCKR = PINSLCKK;
+    GPIOx->LCKR = GPIO_LCKR_LCKK;
     LockState = GPIOx->LCKR;
-    LockState = (GPIOx->LCKR & PINSLCKK);
+    LockState = (GPIOx->LCKR & GPIO_LCKR_LCKK);
 }
 void EXTI_Init(PINS_Type Pin, PORTS_Type Port)
 void WritePin(GPIO_TypeDef *GPIOx, PINS_Type Pin, PinState_Type State)
